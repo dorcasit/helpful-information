@@ -1,0 +1,85 @@
+# More information on Static Web App workflow configurations,
+# See: https://aka.ms/swaworkflowconfig
+# See: https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions
+
+name: 'production: Deploy Azure Static Web App'
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - dorcas
+    paths:
+      - '!.github/**'
+      - '.github/workflows/deploy-production-dorcas.yml'
+      - '*'
+      - '!*.md'
+      - 'src/**'
+
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - dorcas
+    paths:
+      - '!.github/**'
+      - '.github/workflows/deploy-production-dorcas.yml'
+      - '*'
+      - '!*.md'
+      - 'src/**'
+
+jobs:
+  build_and_deploy_job:
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    runs-on: ubuntu-latest
+    name: Build and Deploy Job
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Node.js version
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.node-version'
+          cache: 'npm'
+
+      - name: Install
+        run: 'npm install --no-optional --no-fund --no-audit'
+
+      - name: Build
+        run: 'npm run build:production'
+        env:
+          NG_PRODUCTION: 'true'
+          ENV_NAME: ''
+          NG_USE_SERVICE_WORKER: 'true'
+          TXT_APP_NAME: 'Helpful Information'
+          TXT_MAIN_PAGE_HEADER: 'Dorcas provides Helpful Information.'
+          TXT_MAIN_PAGE_INTRO: 'Choose a language. \n\n Виберіть мову:'
+          REGIONS: 'en,ukr'
+          REGIONS_LABELS: 'English,Українська'
+          GOOGLE_SHEETS_API_KEY: ${{ secrets.GOOGLE_SHEETS_API_KEY }}
+          GOOGLE_SHEETS_API_URL: 'https://sheets.googleapis.com/v4/spreadsheets'
+          GOOGLE_SHEETS_SHEET_IDS: '19nhQAMFQdNvp2jJQpJlzU3LKXy2lRPNiNCpStO1iOdI,1XK6eQTTVfm6R4U1NSt8UVIHhIhqSoQ5tgwCg9OyQKZw'
+          AI_CONNECTION_STRING: ${{ secrets.AI_CONNECTION_STRING }}
+
+      - name: Build And Deploy to Production
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          skip_deploy_on_missing_secrets: true
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_PROUD_OCEAN_055A4C803 }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: 'upload'
+          config_file_location: '/'
+          app_location: 'www'
+          output_location: ''
+          skip_app_build: true
+          skip_api_build: true
+
+  close_pull_request_job:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    name: Close Pull Request Job
+    steps:
+      - name: Close Pull Request for Production
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_PROUD_OCEAN_055A4C803 }}
+          action: 'close'
