@@ -10,9 +10,9 @@ export const environment = {
   useServiceWorker: false, // Enable 'offline' support
 
   // Configuration of content
-  appName: 'Helpful Information',
-  mainPageHeader: 'The Red Cross provides helpful information.',
-  mainPageIntroduction: 'Please choose a language/region.',
+  appName: 'Dorcas Information',
+  mainPageHeader: 'Dorcas provides helpful information.',
+  mainPageIntroduction: 'Choose a language. \n\n Виберіть мову:',
 
   // Regions: (A comnma-separated list of URL paths/slugs)
   regions: '',
