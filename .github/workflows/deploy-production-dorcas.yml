@@ -60,6 +60,9 @@ jobs:
           GOOGLE_SHEETS_SHEET_IDS: '19nhQAMFQdNvp2jJQpJlzU3LKXy2lRPNiNCpStO1iOdI,1XK6eQTTVfm6R4U1NSt8UVIHhIhqSoQ5tgwCg9OyQKZw'
           AI_CONNECTION_STRING: ${{ secrets.AI_CONNECTION_STRING }}
 
+      - name: Add robots.txt
+        run: 'cp src/robots.public.txt www/robots.txt'
+
       - name: Add Google Site Verification code
         run: 'echo "google-site-verification: google1509ac04f618a367.html" > www/google1509ac04f618a367.html'
 
