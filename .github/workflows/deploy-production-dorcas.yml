@@ -52,12 +52,12 @@ jobs:
           NG_USE_SERVICE_WORKER: 'true'
           TXT_APP_NAME: 'Helpful Information'
           TXT_MAIN_PAGE_HEADER: 'Dorcas provides Helpful Information.'
-          TXT_MAIN_PAGE_INTRO: 'Choose a language. \n\n Виберіть мову:'
-          REGIONS: 'en,ukr'
-          REGIONS_LABELS: 'English,Українська'
+          TXT_MAIN_PAGE_INTRO: 'Choose a district:'
+          REGIONS: 'mukachevo,uzhhorod'
+          REGIONS_LABELS: 'Mukachevo,Uzhhorod'
           GOOGLE_SHEETS_API_KEY: ${{ secrets.GOOGLE_SHEETS_API_KEY }}
           GOOGLE_SHEETS_API_URL: 'https://sheets.googleapis.com/v4/spreadsheets'
-          GOOGLE_SHEETS_SHEET_IDS: '19nhQAMFQdNvp2jJQpJlzU3LKXy2lRPNiNCpStO1iOdI,1XK6eQTTVfm6R4U1NSt8UVIHhIhqSoQ5tgwCg9OyQKZw'
+          GOOGLE_SHEETS_SHEET_IDS: '1XK6eQTTVfm6R4U1NSt8UVIHhIhqSoQ5tgwCg9OyQKZw,19nhQAMFQdNvp2jJQpJlzU3LKXy2lRPNiNCpStO1iOdI'
           AI_CONNECTION_STRING: ${{ secrets.AI_CONNECTION_STRING }}
 
       - name: Add robots.txt
