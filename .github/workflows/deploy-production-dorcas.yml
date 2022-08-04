@@ -52,7 +52,7 @@ jobs:
           NG_USE_SERVICE_WORKER: 'true'
           TXT_APP_NAME: 'Helpful Information'
           TXT_MAIN_PAGE_HEADER: 'Dorcas provides Helpful Information.'
-          TXT_MAIN_PAGE_INTRO: 'Choose a districs:'
+          TXT_MAIN_PAGE_INTRO: 'Choose a district:'
           REGIONS: 'mukachevo,uzhhorod'
           REGIONS_LABELS: 'Mukachevo,Uzhhorod'
           GOOGLE_SHEETS_API_KEY: ${{ secrets.GOOGLE_SHEETS_API_KEY }}
