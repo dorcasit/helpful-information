@@ -51,10 +51,10 @@ jobs:
           ENV_NAME: ''
           NG_USE_SERVICE_WORKER: 'true'
           TXT_APP_NAME: 'Helpful Information'
-          TXT_MAIN_PAGE_HEADER: 'Dorcas provides Helpful Information.'
-          TXT_MAIN_PAGE_INTRO: 'Choose a district:'
+          TXT_MAIN_PAGE_HEADER: 'Сайт корисної інформації від "Доркас"'
+          TXT_MAIN_PAGE_INTRO: 'Веберіть район:'
           REGIONS: 'mukachevo,uzhhorod'
-          REGIONS_LABELS: 'Mukachevo,Uzhhorod'
+          REGIONS_LABELS: 'Мукачево,Ужгород'
           GOOGLE_SHEETS_API_KEY: ${{ secrets.GOOGLE_SHEETS_API_KEY }}
           GOOGLE_SHEETS_API_URL: 'https://sheets.googleapis.com/v4/spreadsheets'
           GOOGLE_SHEETS_SHEET_IDS: '1XK6eQTTVfm6R4U1NSt8UVIHhIhqSoQ5tgwCg9OyQKZw,19nhQAMFQdNvp2jJQpJlzU3LKXy2lRPNiNCpStO1iOdI'
